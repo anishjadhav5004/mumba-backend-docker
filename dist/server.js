@@ -16,6 +16,8 @@ const express_1 = __importDefault(require("express"));
 const config_1 = __importDefault(require("./configuration/config"));
 const cors_1 = __importDefault(require("cors"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
+// import multer from "multer";
+// import postController from "./controller/postController";
 const routes_1 = __importDefault(require("./routes/routes"));
 // app.use(express.urlencoded({extended:false}))
 require("reflect-metadata");
@@ -23,6 +25,7 @@ const http_1 = require("http");
 const socket_io_1 = require("socket.io");
 const message_1 = require("./entities/message");
 const error_1 = require("./middleware/error");
+// import { error, log } from "console";
 const app = (0, express_1.default)();
 const port = process.env.PORT;
 app.use((0, cookie_parser_1.default)());

@@ -7,7 +7,6 @@ import profileController from "../controller/profileController";
 @Entity({name:"follow5003"})
 export class Follow{
 
-
     @PrimaryGeneratedColumn()
     followId:number;
 
@@ -18,7 +17,5 @@ export class Follow{
     @ManyToOne(()=>Profile,(profile)=>profile.followers,{onDelete:"CASCADE"})
     @JoinColumn({name:'followerId'})
     followers : Profile
-
-
-
+    
 }

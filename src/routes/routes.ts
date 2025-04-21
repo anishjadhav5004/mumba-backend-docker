@@ -11,9 +11,7 @@ import CommnetController from "../controller/commnetController"
 import path from "path";
 // import { log } from "console"
 
-
 const uploadPath = path.join(__dirname, '..', '..', '..', 'final-project-angular', 'frontend', 'public', 'assets')
-
 
 // C:\Users\AnishJadhavINDev\Documents\final project angular\frontend\public
 
@@ -118,8 +116,13 @@ routes.delete('/deleteUser/:userId', authentication, userController.deleteUser)
 routes.post('/report', authentication, notification.addReport)
 routes.get('/getReports', authentication, notification.getReport)
 
-
 routes.post('/auth/reset-pass', authentication,)
+
+routes.get('/getFollowersInsights',authentication,)
+
+
+
+
 
 
 

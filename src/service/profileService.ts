@@ -169,8 +169,6 @@ class profileService{
 
     async getFollowers(profileId:any){
 
-
-
         const followers = await followRepository.find({
             where:{
                 following:{

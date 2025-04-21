@@ -153,7 +153,7 @@ class AuthService {
                     secure:true,
                     httpOnly:true,
                     sameSite:'lax',
-                    maxAge:10*1000});
+                    maxAge:60*60*1000});
                 console.log("success fullu");
                 
                 res.status(200).json({ msg: "logged in" });

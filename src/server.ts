@@ -2,8 +2,8 @@ import express, { NextFunction, urlencoded } from "express"
 import AppDataSource from "./configuration/config";
 import cors from "cors"
 import cookieParser from "cookie-parser";
-import multer from "multer";
-import postController from "./controller/postController";
+// import multer from "multer";
+// import postController from "./controller/postController";
 import routes from "./routes/routes";
 // app.use(express.urlencoded({extended:false}))
 import 'reflect-metadata'
@@ -11,7 +11,7 @@ import { createServer } from 'http';
 import {Server} from "socket.io"
 import { Message } from "./entities/message";
 import { globalErrorHandler } from "./middleware/error";
-import { error, log } from "console";
+// import { error, log } from "console";
 
 const app = express();
 const port = process.env.PORT;
@@ -66,9 +66,6 @@ AppDataSource.initialize().then(
         // next(error);
         // console.log(error);
         console.log(error);
-        
-        
-        
     }
 )
 
