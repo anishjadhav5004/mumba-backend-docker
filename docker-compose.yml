@@ -1,0 +1,48 @@
+# Complete Docker Configuration
+
+## 1. docker-compose.yml
+
+version: '3.8'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    hostname: sql1
+    container_name: db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=anish123*A
+    ports:
+      - "1433:1433"
+    networks:
+      - app-net
+    # healthcheck:
+    #   test: ["CMD-SHELL", "/opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P anish123*A -Q 'SELECT 1' || exit 1"]
+    #   interval: 10s
+    #   retries: 5
+    #   start_period: 30s
+    # restart: unless-stopped
+
+  backend:
+    build: .
+    container_name: backend
+    depends_on:
+            - db
+        # condition: service_healthy
+    environment:
+      - DB_HOST=db
+      - DB_PORT=1433
+      - DB_USER=sa
+      - DB_PASSWORD=anish123*A
+      - DB_NAME=master
+      - PORT=200
+    ports:
+      - "200:200"
+    networks:
+      - app-net
+    # Note: We're not overriding the CMD here since it's correctly defined in Dockerfile
+    restart: unless-stopped
+
+networks:
+  app-net:
+    driver: bridge

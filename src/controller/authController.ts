@@ -10,7 +10,7 @@ class authController {
 
         try{
 
-            const result = await authService.signUp(req, res)
+            await authService.signUp(req, res)
 
             res.status(200).json({ 'msg': 'signup complete !!' });
         

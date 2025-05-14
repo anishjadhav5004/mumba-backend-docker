@@ -8,20 +8,34 @@ import { Follow } from "../entities/follow";
 import { Message } from "../entities/message";
 
 const AppDataSource = new DataSource({
+  type: "mssql",
+  host: process.env.DB_SERVER || "db", // Docker service name
+  port: 1433, // Default MSSQL port
+  username: process.env.DB_USER || "sa",
+  password: process.env.DB_PASSWORD || "anish123*A",
+  database: process.env.DB_NAME || "master",
+  synchronize: true,
+  logging: false,
+  entities: ["dist/entities/*.js"],
+  options: {
+    encrypt: true,
+    trustServerCertificate: true,
+  },
+});
 
-    type:"mssql",
-    host:"dev.c5owyuw64shd.ap-south-1.rds.amazonaws.com",
-    port:1982,
-    username:"j2",
-    password:"123456",
-    database:"JIBE_Main_Training",
-    synchronize: true,
-    logging: false,
-    entities: ["dist/entities/*.js"],
-    options:{
-        encrypt:true,
-        trustServerCertificate:true
-    }
-})
+export default AppDataSource;
 
-export default AppDataSource
+// module.exports = {
+//     type: 'mssql',
+//     host: process.env.DB_HOST || 'localhost',
+//     // port: parseInt(process.env.DB_PORT) || 1433,
+//     username: process.env.DB_USERNAME || 'sa',
+//     password: process.env.DB_PASSWORD || 'yourStrong(!)Password',
+//     database: process.env.DB_DATABASE || 'mydb',
+//     entities: ['dist/**/*.entity.js'],
+//     synchronize: true,
+//     options: {
+//       encrypt: false, // for local dev
+//       trustServerCertificate: true,
+//     },
+//   };

@@ -45,7 +45,6 @@ class AuthService {
 
         }
 
-
         const userDto = plainToInstance(SignUpDto,req.body)
 
         const errors = await validate(userDto)
@@ -82,11 +81,19 @@ class AuthService {
 
     logIn = async (req: Request, res: Response, next : NextFunction) => {
         
-    
+        
+        console.log(req.body);    
         const credentialDto = plainToInstance(loginDto,req.body)
         const errors = await validate(credentialDto);
+        console.log(errors);
+        console.log(credentialDto);
+        
+        
         if(errors.length){
 
+            
+            console.log("thrown1");
+            
             throw new AppError('invalid data',400)
         }
 
@@ -142,6 +149,8 @@ class AuthService {
 
             // res.status(400).j    son({ msg: "user not found" });
             console.log("profile err");
+
+            console.log("thrown1");
             
             throw new AppError('user not found',404);
 
